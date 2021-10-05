@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EXAMEN</title>
+    <style>
+        .tabla{
+            width: 35%;
+            height: auto;
+            border: 3px solid #0f60a1;
+            border-collapse: collapse;
+            text-align: left;
+        }
+        .tabla td{            
+            border-bottom: rgb(0, 15, 20) 1px;
+            
+        }
+        .tabla th{
+            color: rgb(0, 0, 0);
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <h1>Ventas de articulos de computacion</h1>
+    <script src="EXAMEN.JS"></script>
+    <table class="tabla" style="margin-top: 3%;">
+        <tr>
+            <th>ID</th>
+            <th>Articulo</th>
+            <th>Precio</th>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>Mouse</td>
+            <td>100</td>
+            <td><button Folio="1" Nombre="Mouse" MousePrecio="100" onclick="agregarProducto(this)">Agregar</button></td>        
+        </tr>
+        <tr>
+            <td>2</td>
+            <td>Teclado</td>
+            <td>200</td>
+            <td><button Folio="2" Nombre="Teclado" TecladoPrecio="200" onclick="agregarProducto(this)">Agregar</button></td>
+        </tr>
+        <tr>
+            <td>3</td>
+            <td>Monitor</td>
+            <td>800</td>
+            <td><button Folio="3" Nombre="Monitor" MonitorPrecio="800" onclick="agregarProducto(this)">Agregar</button></td>
+        </tr>
+        <tr>
+            <td>4</td>
+            <td>CPU</td>
+            <td>2000</td>
+            <td><button Folio="4" Nombre="CPU" CPUprecio="2000" onclick="agregarProducto(this)">Agregar</button></td>
+        </tr>
+        <tr>
+            <td>5</td>
+            <td>Impresora</td>
+            <td>2500</td>
+            <td><button Folio="5" Nombre="Impresora" ImpresoraPrecio="2500" onclick="agregarProducto(this)">Agregar</button></td>
+        </tr>
+    </table>
+    <table class="tabla" style="margin-top: 3%;" >
+        <thead>
+            <tr>
+                <th>Folio</th>
+                <th>Nombre</th>
+                <th>Precio</th>
+                <th>Cantidad</th>
+            </tr>
+        </thead>
+        <tbody id="Compras">
+    
+        </tbody>
+        
+    </table>
+    
+    
+    <canvas id="myChart" width="400" height="400"></canvas>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    
+    var ctx = document.getElementById('myChart').getContext('2d');
+    var myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: ['Mouse', 'Teclado', 'Monitor', 'CPU', 'Impresora'],
+        datasets: [{
+            label: '# of Votes',
+            data: [8, 11, 10, 6, 4],
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)'
+            ],
+            borderColor: [
+                'rgba(255, 99, 132, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)'
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            y: {
+                beginAtZero: true
+            }
+        }
+    }
+});
+</script>
+<script>
+var sumaMouse = 0;
+var sumaTeclado = 0;
+var sumaMonitor = 0;
+var sumaCPU = 0;
+var sumaImpresora = 0;
+
+var contMouse = 0;
+var contTeclado = 0;
+var contMonitor = 0;
+var contCPU = 0;
+var contImpresora = 0;
+
+var cantidadMouse = 0;
+var cantidadTeclado = 0;
+var cantidadMonitor = 0;
+var cantidadCPU = 0;
+var cantidadImpresora = 0;
+
+
+function agregarProducto(Articulo){
+var Nombre = Articulo.getAttribute('Nombre');
+var Mouseprecio = Articulo.getAttribute('MousePrecio');
+var TecladoPrecio = Articulo.getAttribute('TecladoPrecio');
+var MonitorPrecio = Articulo.getAttribute('MonitorPrecio');
+var CPUprecio = Articulo.getAttribute('CPUprecio');
+var ImpresoraPrecio = Articulo.getAttribute('ImpresoraPrecio');
+var Folio = Articulo.getAttribute('Folio');
+
+
+switch (Nombre) {
+  case 'Mouse':
+    contMouse += 1;
+    cantidadMouse += 1;
+    sumaMouse = sumaMouse + parseInt(Mouseprecio);
+        if (contMouse <= 1){
+            document.getElementById('Compras').innerHTML += '<tr><td id>'+Folio+'</td><td>'+Nombre+'</td><td id="sumaMouse">'+sumaMouse+'</td><td id="cantidadMouse">'+cantidadMouse+'</td></tr>';
+        } else {
+            document.getElementById("sumaMouse").innerHTML = sumaMouse;
+            document.getElementById("cantidadMouse").innerHTML = cantidadMouse;
+
+        }
+    break;
+  case 'Teclado':
+    contTeclado += 1;
+    cantidadTeclado += 1;
+    sumaTeclado = sumaTeclado + parseInt(TecladoPrecio);
+        if (contTeclado <= 1){
+                    document.getElementById('Compras').innerHTML += '<tr><td id>'+Folio+'</td><td>'+Nombre+'</td><td id="sumaTeclado">'+sumaTeclado+'</td><td id="cantidadTeclado">'+cantidadTeclado+'</td></tr>';
+                } else {
+                    document.getElementById("sumaTeclado").innerHTML = sumaTeclado;
+                    document.getElementById("cantidadTeclado").innerHTML = cantidadTeclado;
+
+                }
+    break;
+  case 'Monitor':
+    contMonitor += 1;
+    cantidadMonitor += 1;
+    sumaMonitor = sumaMonitor + parseInt(MonitorPrecio);
+        if (contMonitor <= 1){
+                    document.getElementById('Compras').innerHTML += '<tr><td id>'+Folio+'</td><td>'+Nombre+'</td><td id="sumaMonitor">'+sumaMonitor+'</td><td id="cantidadMonitor">'+cantidadMonitor+'</td></tr>';
+                } else {
+                    document.getElementById("sumaMonitor").innerHTML = sumaMonitor;
+                    document.getElementById("cantidadMonitor").innerHTML = cantidadMonitor;
+
+                }
+    break;
+  case 'CPU':
+    contCPU += 1;
+    cantidadCPU += 1;
+    sumaCPU = sumaCPU + parseInt(CPUprecio);
+        if (contCPU <= 1){
+                    document.getElementById('Compras').innerHTML += '<tr><td id>'+Folio+'</td><td>'+Nombre+'</td><td id="sumaCPU">'+sumaCPU+'</td><td id="cantidadCPU">'+cantidadCPU+'</td></tr>';
+                } else {
+                    document.getElementById("sumaCPU").innerHTML = sumaCPU;
+                    document.getElementById("cantidadCPU").innerHTML = cantidadCPU;
+
+                }
+    break
+  case 'Impresora':
+    contImpresora += 1;
+    cantidadImpresora += 1;
+    sumaImpresora = sumaImpresora + parseInt(ImpresoraPrecio);
+        if (contImpresora <= 1){
+                    document.getElementById('Compras').innerHTML += '<tr><td id>'+Folio+'</td><td>'+Nombre+'</td><td id="sumaImpresora">'+sumaImpresora+'</td><td id="cantidadImpresora">'+cantidadImpresora+'</td></tr>';
+                } else {
+                    document.getElementById("sumaImpresora").innerHTML = sumaImpresora;
+                    document.getElementById("cantidadImpresora").innerHTML = cantidadImpresora;
+
+                }
+    break;
+}
+
+}
+
+
+
+
+
+</script>
+
+</html>

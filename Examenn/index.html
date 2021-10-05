@@ -1,0 +1,187 @@
+!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@latest/dist/Chart.min.js"></script>
+<title>Document</title>
+<style>
+.tabla{
+width: 60%;
+height: auto;
+border: 1px solid rgb(255, 0, 0);
+border-collapse: collapse;
+text-align: center;
+}
+.tabla td{
+border-bottom: rgb(0, 153, 13) solid 1px;
+}
+.tabla th{
+color: rgb(221, 162, 0);
+}
+</style>
+</head>
+<body>
+<!-- Tabla de productos-->
+<table id="tProductos" class="tabla" style="margin-top: 10%;">
+<tr>
+<th>#id</th>
+<th>Nombre</th>
+<th>Precio</th>
+<th>Cantidad</th>
+<th>Acción</th>
+</tr>
+<tr>
+<td > 1</td>
+<td>Mouse</td>
+<td>100</td>
+<td>30</td>
+<td><button producto-id="1" nombre="Mouse" precio1 = "100" cantidad="30" onclick="agregarProducto1()">Sumar</button></td>
+</tr>
+<tr>
+<td>2</td>
+<td>Teclado</td>
+<td>$ 200</td>
+<td>15</td>
+<td><button producto-id="2" nombre="Teclado" precio="$ 200" cantidad="15" onclick="agregarProducto(this)">Sumar</button></td>
+</tr>
+<tr>
+<td>3</td>
+<td>Monitor</td>
+<td>$ 800</td>
+<td>6</td>
+<td><button producto-id="3" nombre="Monitor" precio="$ 800" cantidad="6" onclick="agregarProducto(this)">Sumar</button></td>
+</tr>
+<tr>
+    <td>4</td>
+    <td>CPU</td>
+    <td>$ 2000</td>
+    <td>2</td>
+    <td><button producto-id="4" nombre="CPU" precio="$ 2000" cantidad="2" onclick="agregarProducto(this)">Sumar</button></td>
+    </tr>
+    <tr>
+        <td>5</td>
+        <td>Impresora</td>
+        <td>$ 2500</td>
+        <td>3</td>
+        <td><button producto-id="5" nombre="Impresora" precio="$ 2500" cantidad="3" onclick="agregarProducto(this)">Sumar</button></td>
+        </tr>
+</table>
+
+<table>
+
+</table>
+<canvas id="myChart" width="400" height="400"></canvas>
+
+
+<!-- Tabla de Compras-->
+<table class="tabla" style="margin-top: 10%;">
+<thead>
+<tr>
+<th>#id</th>
+<th>Nombre</th>
+<th>Precio</th>
+<th>Cantidad</th>
+</tr>
+<tr>
+    <td>1</td>
+    <td>Mouse</td>
+    <td><input id="mouseprecio" type="text"></td>
+    <td><input id="mousecantidad" type="text"></td>
+</tr>
+<tr>
+    <td>2</td>
+<td>Teclado</td>
+<td><input type="text" id="Tecladoprecio"></td>
+<td><input type="text" id="Tecladocantidad"></td>
+</tr>
+<tr>
+    <td>3</td>
+<td>Monitor</td>
+<td><input type="text" id="monitorprecio"></td>
+<td><input type="text" id="monitorcantidad"></td>
+</tr>
+<tr>
+    <td>4</td>
+    <td>CPU</td>
+    <td><input type="text" id="CPUprecio"></td>
+    <td><input type="text" id=" CPUcantidad"></td>
+</tr>
+<tr>
+    <td>5</td>
+        <td>Impresora</td>
+        <td><input type="text" id="Impresoraprecio"></td>
+        <td><input type="text" id="Impresoracantidad"></td>
+</tr>
+</thead>
+
+</table>
+<!-- /Tabla de Compras-->
+</body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.5.1/chart.min.js">
+    
+</script>
+<script>
+
+    
+function agregarProducto1(element) {
+        let n1 = element.getElementById('1').value;
+        
+        let n2 = element.getElementById('1').value;
+        let total = 0;
+        total = parseInt(n1 + n2) ;
+
+        element.getElementById('mouseprecio').value = total;  
+    }
+    
+// function agregarProducto(producto){
+//     var nombre = producto.getAttribute('nombre');
+//     var precio = producto.getAttribute('precio');
+//     var cantidad = producto.getAttribute('agregar');
+//     var id = producto.getAttribute('producto-id');
+//     document.getElementById('carrito').innerHTML += '<tr><td>'+id+'</td><td>'+nombre+'</td><td>'+precio+'</td><td>1</td></tr>';
+// }
+    
+</script>
+<script>
+    var ctx = document.getElementById('myChart').getContext('2d');
+    var myChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: ['Mouse', 'Teclado','Monitor','CPU','Impresora' ],
+            datasets: [{
+                label: 'GRAFICA',
+                data: [8, 6, 3, 7,6],
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(255, 206, 86, 0.2)',
+                    'rgba(75, 192, 192, 0.2)',
+                    'rgba(153, 102, 255, 0.2)',
+                    'rgba(255, 159, 64, 0.2)'
+                ],
+                borderColor: [
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)'
+                ],
+                borderWidth: 2
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+    </script>
+    
+</html>
+</script>
+</html>

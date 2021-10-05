@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <label>Producto 1</label>
+    <input type="number" id="uno" costo="10" class="test" value="">
+    <br>
+    <br>
+    <label>Producto 2</label>
+    <input type="number" id="dos" costo="15" class="test" value="">
+    <br>
+    <br>
+    <label>Producto 3</label>
+    <input type="number" id="tres" costo="20" class="test" value="">
+    <br>
+    <br>
+    <label for="">Total:</label>
+</body>
+<script src="jquery.min.js"></script>
+
+<script>
+    var elementos = [];
+    var total = 0;
+
+    $(".test").change(function(){
+        var cantidad = $(this).val();
+        costo = parseInt($(this).attr("costo"));
+        total = total + (costo * cantidad);
+        $("#muestra").html("Total: " + total);
+    });
+
+    $("#total").click(function(){
+        console.log(elementos);
+    });
+</script>
+</html>
